@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #triangle-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <button id="next-row-btn">Další řádek</button>
+    <div id="triangle-container"></div>
+
+    <script>
+        const triangleContainer = document.getElementById("triangle-container");
+        const nextRowBtn = document.getElementById("next-row-btn");
+        let previousRow = ["□", "□"];
+
+        function generateNextRow() {
+            const row = ["□"];
+            for (let i = 1; i < previousRow.length; i++) {
+                if (previousRow[i-1] === previousRow[i]) {
+                    row.push("■");
+                } else {
+                    row.push("□");
+                }
+            }
+            row.push("□");
+            previousRow = row;
+            return row;
+        }
+
+        function printTriangle(rows) {
+            const triangleRows = rows.map(row => {
+                const rowText = row.join(" ");
+                return `<div>${rowText}</div>`;
+            });
+            triangleContainer.innerHTML = triangleRows.join("");
+        }
+
+        function onBtnClick() {
+            const nextRow = generateNextRow();
+            rows.push(nextRow);
+            printTriangle(rows);
+            // posunutí tlačítka nad trojúhelník
+            nextRowBtn.style.top = triangleContainer.getBoundingClientRect().top - nextRowBtn.offsetHeight - 10 + "px";
+        }
+
+        // inicializace trojúhelníku
+        const rows = [previousRow, generateNextRow()];
+        printTriangle(rows);
+
+        // přidání posluchače události na tlačítko
+        nextRowBtn.addEventListener("click", onBtnClick);
+    </script>
+</body>
+</html>
