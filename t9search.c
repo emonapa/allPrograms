@@ -1,3 +1,13 @@
+/*
+This program generates all possible combinations of letters
+based on the provided input number using the CartesianProduct() function.
+These combinations are stored in the results[] array.
+The program then parses a text file
+containing a list of names and phone numbers,
+searching for uninterrupted sequences of the same characters
+in names or uninterrupted sequences of digits in phone numbers.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -167,13 +177,3 @@ int main(int argc, char *argv[]) {
 
     return 0;
 }
-
-/*
-This program generates all possible combinations of letters
-based on the provided input number using the CartesianProduct() function.
-These combinations are stored in the results[] array.
-The program then parses a text file
-containing a list of names and phone numbers,
-searching for uninterrupted sequences of the same characters
-in names or uninterrupted sequences of digits in phone numbers.
-*/
